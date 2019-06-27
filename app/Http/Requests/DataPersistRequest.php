@@ -2,13 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\Models\BaseModel;
+//use App\Models\BaseModel;
 
 abstract class DataPersistRequest extends ApiRequest
 {
     protected $fileNames = [];
 
-    protected $storePath = BaseModel::ATTACHMENTS_PATH;
+//    protected $storePath = BaseModel::ATTACHMENTS_PATH;
 
     public abstract function persist();
 

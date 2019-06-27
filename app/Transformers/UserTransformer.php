@@ -4,7 +4,12 @@
 namespace App\Transformers;
 
 
-class UserTransformer
+use App\Post;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+
+class UserTransformer extends Transformer
+
 {
 
 }

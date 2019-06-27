@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Post\IndexRequest;
+use App\Http\Requests\Post\ShowRequest;
+use App\Http\Requests\Post\StoreRequest;
+use App\Post;
+use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +17,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-
+          return response()->json(PostTransformer::collection(Post::all(),'simpleTransform'))  ;
     }
 
     /**
@@ -22,20 +27,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        return response()->json(PostTransformer::simple($request->persist()->post));
     }
 
     /**
@@ -44,9 +39,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ShowRequest $request, Post $post)
     {
-        //
+        return response()->json(PostTransformer::simple($post));
     }
 
     /**
