@@ -3,12 +3,12 @@
 
 namespace App\Http\Requests\Post;
 
-use App\Http\Requests\DataPersistRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoreRequest extends DataPersistRequest
+use App\Http\Requests\DataPersistRequest;
+
+
+class UpdateRequest extends DataPersistRequest
 {
-    public $post;
 
     public function authorize(): bool
     {
@@ -26,9 +26,8 @@ class StoreRequest extends DataPersistRequest
 
     public function persist(): self
     {
-        $this->post = Auth::user()->posts()->create($this->getProcessedData());
+        $this->post->update($this->getProcessedData());
 
         return $this;
     }
-
 }

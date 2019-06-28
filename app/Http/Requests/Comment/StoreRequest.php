@@ -1,14 +1,15 @@
 <?php
 
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Comment;
+
 
 use App\Http\Requests\DataPersistRequest;
 use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends DataPersistRequest
 {
-    public $post;
+    public $comment;
 
     public function authorize(): bool
     {
@@ -18,15 +19,17 @@ class StoreRequest extends DataPersistRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:20',
-            'subtitle' => 'required|max:20',
-            'description' => 'required|max:200',
+            'body' => 'required|max:20',
         ];
     }
 
     public function persist(): self
     {
-        $this->post = Auth::user()->posts()->create($this->getProcessedData());
+        $this->comment = Auth::user()->comments()->create(array_merge([
+            'post_id' => $this->post->id,
+            ],
+            $this->getProcessedData()
+        ));
 
         return $this;
     }

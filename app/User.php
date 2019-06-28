@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\UserSaving;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,6 +16,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $dispatchesEvents = [
+        'saving' => UserSaving::class,
+    ];
+
     protected $fillable = [
         'name', 'email', 'password', 'api_token', 'picture',
     ];

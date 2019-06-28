@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Comment;
+use App\Http\Requests\Post\DestroyRequest;
 use App\Http\Requests\Post\IndexRequest;
 use App\Http\Requests\Post\ShowRequest;
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\UpdateRequest;
 use App\Post;
 use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
@@ -50,21 +53,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Post $post)
     {
-        //
+        return response()->json(PostTransformer::simple($request->persist()->post));
     }
 
     /**
@@ -73,8 +65,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DestroyRequest $request, Post $post)
     {
-        //
+        return response()->json($request->persist()->getResponseMessage());
     }
 }

@@ -1,13 +1,14 @@
 <?php
 
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Comment;
 
 
 use App\Http\Requests\ApiRequest;
 
-class ShowRequest extends ApiRequest
+class IndexRequest extends ApiRequest
 {
+
     public function authorize(): bool
     {
         return true;
@@ -19,7 +20,6 @@ class ShowRequest extends ApiRequest
 
         ];
     }
-
 
 
 }

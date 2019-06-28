@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('post', 'Api\PostController');
+    Route::apiResource('post.comment', 'Api\CommentController');
 });
 
 

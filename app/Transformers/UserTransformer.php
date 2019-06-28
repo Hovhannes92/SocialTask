@@ -11,5 +11,11 @@ use Illuminate\Support\Collection;
 class UserTransformer extends Transformer
 
 {
-
+    public function simpleTransform(Model $user): array
+    {
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+        ];
+    }
 }
