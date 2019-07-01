@@ -32,8 +32,8 @@ class Post extends Model
         return $this->hasOne('App\View');
     }
 
-    public function like()
+    public function likes()
     {
-        return $this->morphOne('App\Like', 'likeable');
+        return $this->morphMany('App\Like', 'likeable');
     }
 }

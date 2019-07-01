@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Comment;
 use App\Http\Requests\Post\DestroyRequest;
+use App\Http\Requests\Post\DislikeRequest;
 use App\Http\Requests\Post\IndexRequest;
+use App\Http\Requests\Post\LikeRequest;
 use App\Http\Requests\Post\ShowRequest;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
@@ -66,6 +68,16 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(DestroyRequest $request, Post $post)
+    {
+        return response()->json($request->persist()->getResponseMessage());
+    }
+
+    public function like(LikeRequest $request, Post $post)
+    {
+        return response()->json($request->persist()->getResponseMessage());
+    }
+
+    public function dislike(DislikeRequest $request, Post $post)
     {
         return response()->json($request->persist()->getResponseMessage());
     }

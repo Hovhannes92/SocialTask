@@ -1,14 +1,13 @@
 <?php
 
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Comment;
 
 
 use App\Http\Requests\DataPersistRequest;
 
 class DestroyRequest extends DataPersistRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -23,14 +22,15 @@ class DestroyRequest extends DataPersistRequest
 
     public function persist(): self
     {
-        $this->post->delete();
+        $this->comment->delete();
 
         return $this;
     }
 
     public function getMessage(): string
     {
-        return "Post successfully deleted.";
+        return "Comment successfully deleted.";
     }
+
 
 }

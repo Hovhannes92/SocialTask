@@ -22,9 +22,9 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function like()
+    public function likes()
     {
-        return $this->morphOne('App\Like', 'likeable');
+        return $this->morphMany('App\Like', 'likeable');
     }
 
 }

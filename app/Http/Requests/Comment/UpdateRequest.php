@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Comment;
 
 
 use App\Http\Requests\DataPersistRequest;
 
-class DestroyRequest extends DataPersistRequest
+class UpdateRequest extends DataPersistRequest
 {
 
     public function authorize(): bool
@@ -17,20 +17,15 @@ class DestroyRequest extends DataPersistRequest
     public function rules(): array
     {
         return [
-
+            'body' => 'required|max:20',
         ];
     }
 
     public function persist(): self
     {
-        $this->post->delete();
+        $this->comment->update($this->getProcessedData());
 
         return $this;
-    }
-
-    public function getMessage(): string
-    {
-        return "Post successfully deleted.";
     }
 
 }
