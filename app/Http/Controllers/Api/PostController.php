@@ -12,11 +12,21 @@ use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Post;
 use App\Transformers\PostTransformer;
+use App\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('post_view')->only('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +56,12 @@ class PostController extends Controller
      */
     public function show(ShowRequest $request, Post $post)
     {
+//        if ($request->post->views()->where('user_id', Auth::user()->id)->count() === 0  ||
+//          ((strtotime(Carbon::now()) - (strtotime((View::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)
+//               ->first()->created_at)))) > 3600))
+//        {
+//            $request->persist();
+//        }
         return response()->json(PostTransformer::simple($post));
     }
 
@@ -74,11 +90,17 @@ class PostController extends Controller
 
     public function like(LikeRequest $request, Post $post)
     {
+
         return response()->json($request->persist()->getResponseMessage());
     }
 
     public function dislike(DislikeRequest $request, Post $post)
     {
         return response()->json($request->persist()->getResponseMessage());
+    }
+
+    public function tag(DislikeRequest $request, Post $post)
+    {
+
     }
 }

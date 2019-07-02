@@ -13,6 +13,8 @@ class CommentTransformer extends Transformer
         return [
             'id' => $comment->id,
             'body' => $comment->body,
+            'comment_like_count' => $comment->likes()->where('like_dislike', 1)->count(),
+            'comment_dislike_count' => $comment->likes()->where('like_dislike', 2)->count(),
         ];
     }
 }

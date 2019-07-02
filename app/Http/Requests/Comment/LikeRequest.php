@@ -22,15 +22,15 @@ class LikeRequest extends DataPersistRequest
         ];
     }
 
+    protected function getMergingData(): array
+    {
+        return ['user_id' => Auth::user()->id,
+            'like_dislike' => Like::LIKE_DISLIKE['like'],];
+    }
+
     public function persist(): self
     {
-
-        $this->comment->likes()->create(array_merge([
-            'user_id' => Auth::user()->id,
-            'like_dislike' => Like::LIKE_DISLIKE['like'],
-        ],
-            $this->getProcessedData()
-        ));
+        $this->comment->likes()->create($this->getProcessedData());
 
         return $this;
     }

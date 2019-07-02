@@ -3,10 +3,10 @@
 
 namespace App\Http\Requests\Post;
 
+use App\Http\Requests\DataPersistRequest;
+use Illuminate\Support\Facades\Auth;
 
-use App\Http\Requests\ApiRequest;
-
-class ShowRequest extends ApiRequest
+class ShowRequest extends DataPersistRequest
 {
     public function authorize(): bool
     {
@@ -20,6 +20,19 @@ class ShowRequest extends ApiRequest
         ];
     }
 
+    protected function getMergingData(): array
+    {
+        return [
+            'user_id' => Auth::user()->id,
+        ];
+    }
+
+    public function persist(): self
+    {
+        $this->post->views()->create($this->getProcessedData());
+
+        return $this;
+    }
 
 
 }

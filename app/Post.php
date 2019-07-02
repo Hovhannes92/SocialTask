@@ -10,7 +10,8 @@ class Post extends Model
         'title',
         'subtitle',
         'description',
-        'user_id'];
+        'user_id',
+        'view_count'];
 
     public function user()
     {
@@ -22,18 +23,23 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
+    public function views()
+    {
+        return $this->hasMany('App\View');
+    }
+
     public function tags()
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 
-    public function view()
-    {
-        return $this->hasOne('App\View');
-    }
-
     public function likes()
     {
         return $this->morphMany('App\Like', 'likeable');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role')->withTimestamps();
     }
 }
