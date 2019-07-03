@@ -90,6 +90,7 @@ class PostController extends Controller
 
     public function like(LikeRequest $request, Post $post)
     {
+//        dd(Auth::user()->roles->first()->name);
 
         return response()->json($request->persist()->getResponseMessage());
     }

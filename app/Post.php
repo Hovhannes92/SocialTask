@@ -38,8 +38,4 @@ class Post extends Model
         return $this->morphMany('App\Like', 'likeable');
     }
 
-    public function roles()
-    {
-        return $this->belongsToMany('App\Role')->withTimestamps();
-    }
 }

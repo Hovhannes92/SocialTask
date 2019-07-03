@@ -5,11 +5,26 @@ namespace App\Policies;
 use App\User;
 use App\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class PostPolicy
 {
     use HandlesAuthorization;
-    
+
+    public function like(User $user, Post $post)
+    {
+        return $post->user_id !== Auth::user()->id  &&
+
+            !$post->likes()->where('user_id', Auth::user()->id)->where('like_dislike', 1)->exists();
+    }
+
+    public function dislike(User $user, Post $post)
+    {
+        return $post->user_id !== Auth::user()->id  &&
+
+            !$post->likes()->where('user_id', Auth::user()->id)->where('like_dislike', 2)->exists();
+    }
+
     /**
      * Determine whether the user can view any posts.
      *
@@ -18,7 +33,7 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        //
+
     }
 
     /**

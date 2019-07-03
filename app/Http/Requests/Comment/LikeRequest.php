@@ -12,7 +12,7 @@ class LikeRequest extends DataPersistRequest
 
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->can('like', $this->comment);
     }
 
     public function rules(): array
@@ -30,7 +30,9 @@ class LikeRequest extends DataPersistRequest
 
     public function persist(): self
     {
+        $this->comment->likes()->where('user_id', Auth::user()->id)->delete();
         $this->comment->likes()->create($this->getProcessedData());
+
 
         return $this;
     }

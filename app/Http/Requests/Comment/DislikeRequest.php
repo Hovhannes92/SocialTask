@@ -13,7 +13,7 @@ class DislikeRequest extends DataPersistRequest
 
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->can('dislike', $this->comment);
     }
 
     public function rules(): array
@@ -31,6 +31,7 @@ class DislikeRequest extends DataPersistRequest
 
     public function persist(): self
     {
+        $this->comment->likes()->where('user_id', Auth::user()->id)->delete();
         $this->comment->likes()->create($this->getProcessedData());
 
         return $this;
