@@ -21,12 +21,16 @@ class StoreRequest extends DataPersistRequest
             'title' => 'required|max:20',
             'subtitle' => 'required|max:20',
             'description' => 'required|max:200',
+            'tag' => 'array',
+            'tag.*.id' => 'id|exists:tags',
         ];
     }
 
     public function persist(): self
     {
         $this->post = Auth::user()->posts()->create($this->getProcessedData());
+
+        $this->post->tags()->sync($this->tag);
 
         return $this;
     }

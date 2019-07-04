@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ROLES = [
+        'Admin' => 1,
+        'User' => 2
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +26,7 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
-        'name', 'email', 'password', 'api_token', 'picture',
+        'name', 'email', 'password', 'api_token', 'picture', 'role',
     ];
 
     /**
@@ -41,6 +46,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+//    public function hasRole($role)
+//    {
+//        return User::where('role', $role)->get();
+//    }
 
     public function posts()
     {

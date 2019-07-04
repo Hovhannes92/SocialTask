@@ -9,6 +9,7 @@ use App\Http\Requests\Post\IndexRequest;
 use App\Http\Requests\Post\LikeRequest;
 use App\Http\Requests\Post\ShowRequest;
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\TagRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Post;
 use App\Transformers\PostTransformer;
@@ -56,6 +57,9 @@ class PostController extends Controller
      */
     public function show(ShowRequest $request, Post $post)
     {
+
+        dd($post->tags->find(1)->tag_word);
+
 //        if ($request->post->views()->where('user_id', Auth::user()->id)->count() === 0  ||
 //          ((strtotime(Carbon::now()) - (strtotime((View::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)
 //               ->first()->created_at)))) > 3600))
@@ -100,8 +104,4 @@ class PostController extends Controller
         return response()->json($request->persist()->getResponseMessage());
     }
 
-    public function tag(DislikeRequest $request, Post $post)
-    {
-
-    }
 }

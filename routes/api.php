@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('post', 'Api\PostController');
     Route::apiResource('post.comment', 'Api\CommentController');
+    Route::apiResource('tag', 'Api\TagController');
 
     Route::post('/post/{post}/like', 'Api\PostController@like');
     Route::post('/post/{post}/dislike', 'Api\PostController@dislike');
