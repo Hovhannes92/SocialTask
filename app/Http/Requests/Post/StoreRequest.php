@@ -30,7 +30,7 @@ class StoreRequest extends DataPersistRequest
     {
         $this->post = Auth::user()->posts()->create($this->getProcessedData());
 
-        $this->post->tags()->sync($this->tag);
+        $this->post->tags()->syncWithoutDetaching($this->tag);
 
         return $this;
     }

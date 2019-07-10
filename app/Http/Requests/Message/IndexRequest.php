@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Requests\Comment;
+namespace App\Http\Requests\Message;
 
 use App\Http\Requests\ApiRequest;
 
@@ -19,6 +19,5 @@ class IndexRequest extends ApiRequest
 
         ];
     }
-
 
 }

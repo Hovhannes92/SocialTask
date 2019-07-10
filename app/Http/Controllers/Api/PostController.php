@@ -58,7 +58,7 @@ class PostController extends Controller
     public function show(ShowRequest $request, Post $post)
     {
 
-        dd($post->tags->find(1)->tag_word);
+//        dd($post->tags->find(1)->tag_word);
 
 //        if ($request->post->views()->where('user_id', Auth::user()->id)->count() === 0  ||
 //          ((strtotime(Carbon::now()) - (strtotime((View::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)
