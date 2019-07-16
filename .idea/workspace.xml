@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f1926abd-113f-4951-9eb1-a8c0c73db1b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/UserSaving.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/UserSaving.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Transformers/PostTransformer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transformers/PostTransformer.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Transformers/PostTransformer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="221">
+              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -549,12 +548,12 @@
       <workItem from="1562145101560" duration="51794000" />
       <workItem from="1562752300995" duration="231000" />
       <workItem from="1562752543044" duration="1499000" />
-      <workItem from="1562754176275" duration="18500000" />
+      <workItem from="1562754176275" duration="19000000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206586000" />
+    <option name="totallyTimeSpent" value="207086000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -994,8 +993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Transformers/PostTransformer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="221">
+          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
         </state>
       </provider>
     </entry>
