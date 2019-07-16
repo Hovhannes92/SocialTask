@@ -35,3 +35,4 @@ class UserSaving
         return new PrivateChannel('channel-name');
     }
 }
+

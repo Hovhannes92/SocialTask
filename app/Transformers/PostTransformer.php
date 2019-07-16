@@ -8,7 +8,7 @@ use App\Like;
 use App\Tag;
 use Illuminate\Database\Eloquent\Model;
 
-class PostTransformer extends Transformer
+class PostTransformer extends Transformer````````
 
 {
 
