@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Message\DestroyRequest;
 use App\Http\Requests\Message\StoreRequest;
+use App\Http\Requests\Message\UpdateRequest;
 use App\Message;
 use App\Transformers\MessageTransformer;
 use Illuminate\Http\Request;
@@ -71,9 +73,10 @@ class MessageController extends Controller
 //     * @param  int  $id
 //     * @return \Illuminate\Http\Response
 //     */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Message $message)
     {
-
+        $request->persist();
+        return response()->json(MessageTransformer::collection(Message::all(),'simpleTransform'));
     }
 
     /**
@@ -82,8 +85,8 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DestroyRequest $request ,Message $message)
     {
-        //
+        return response()->json($request->persist()->getResponseMessage());
     }
 }

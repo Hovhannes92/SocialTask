@@ -3,15 +3,15 @@
 
 namespace App\Http\Requests\Message;
 
-
 use App\Http\Requests\DataPersistRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateRequest extends DataPersistRequest
 {
 
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->can('update',$this->route('message'));
     }
 
     public function rules(): array
@@ -23,7 +23,7 @@ class UpdateRequest extends DataPersistRequest
 
     public function persist(): self
     {
-        $this->message->update($this->getProcessedData());
+        $this->route('message')->update($this->getProcessedData());
 
         return $this;
     }
