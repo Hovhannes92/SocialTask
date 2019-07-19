@@ -24,7 +24,7 @@ class CommentController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        return response()->json(CommentTransformer::collection(Comment::all(),'simpleTransform'))  ;
+        return response()->json(CommentTransformer::collection(Comment::all(),'simpleTransform')) ;
     }
 
 

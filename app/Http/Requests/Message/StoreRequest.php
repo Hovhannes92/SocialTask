@@ -23,6 +23,11 @@ class StoreRequest extends DataPersistRequest
         ];
     }
 
+    protected function getMergingData(): array
+    {
+        return ['chat_id' => $this->chat->id];
+    }
+
     public function persist(): self
     {
         $this->message = Auth::user()->messages()->create($this->getProcessedData());

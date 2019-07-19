@@ -67,10 +67,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-
     public function roles()
     {
         return $this->belongsToMany('App\Role');
+    }
+
+    public function chats()
+    {
+        return $this->belongsToMany('App\Chat')->withTimestamps();
     }
 
 }
