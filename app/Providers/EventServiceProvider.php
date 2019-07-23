@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\MessageCreated;
 use App\Events\UserSaving;
 use App\Listeners\AddingApiToken;
+use App\Listeners\ReadUnread;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserSaving::class => [
             AddingApiToken::class,
+        ],
+        MessageCreated::class => [
+            ReadUnread::class,
         ]
     ];
 

@@ -27,7 +27,6 @@ class CommentController extends Controller
         return response()->json(CommentTransformer::collection(Comment::all(),'simpleTransform')) ;
     }
 
-
     /**
      * Store a newly created resource in storage.
      *

@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Chat;
+use App\Comment;
 use App\Http\Requests\Message\DestroyRequest;
+use App\Http\Requests\Message\IndexRequest;
 use App\Http\Requests\Message\StoreRequest;
 use App\Http\Requests\Message\UpdateRequest;
 use App\Message;
+use App\Transformers\CommentTransformer;
 use App\Transformers\MessageTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MessageController extends Controller
 {
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//
-//    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(IndexRequest $request)
+    {
+        return response()->json(MessageTransformer::collection(Message::all(),'simpleTransform')) ;
+    }
 //
 //    /**
 //     * Show the form for creating a new resource.
@@ -38,7 +42,7 @@ class MessageController extends Controller
 //     * @param  \Illuminate\Http\Request  $request
 //     * @return \Illuminate\Http\Response
 //     */
-    public function store(StoreRequest $request, Message $message)
+    public function store(StoreRequest $request, Message $message, Chat $chat)
     {
         $request->persist();
         return response()->json(MessageTransformer::collection(Message::all(),'simpleTransform'));

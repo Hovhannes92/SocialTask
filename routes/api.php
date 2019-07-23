@@ -20,6 +20,11 @@ Route::group(['middleware' => ['auth:api']], function () {
 //    Route::apiResource('chat', 'Api\ChatController')->only(['store']);
     Route::apiResource('chat.message', 'Api\MessageController');
     Route::get('user/{user}/chat', 'Api\ChatController@chat_check');
+    Route::post('chat/{chat}/add_user', 'Api\ChatController@add_user');
+
+    Route::get('/chat', 'Api\ChatController@index');
+    Route::get('/chat/{chat}', 'Api\ChatController@show');
+
 
     Route::post('/post/{post}/like', 'Api\PostController@like');
     Route::post('/post/{post}/dislike', 'Api\PostController@dislike');

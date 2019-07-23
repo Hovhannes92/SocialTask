@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Chat;
 use App\Comment;
+use App\Http\Requests\Chat\AddUserRequest;
 use App\Http\Requests\Chat\ChatCheckRequest;
+use App\Http\Requests\Chat\IndexRequest;
+use App\Http\Requests\Chat\ShowRequest;
 use App\Message;
 use App\Transformers\ChatTransformer;
 use App\Transformers\MessageTransformer;
@@ -11,19 +15,21 @@ use App\Transformers\PostTransformer;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(IndexRequest $request, Chat $chat)
+    {
+//        return response()->json(ChatTransformer::collection(Auth::user()->chats,'detailedTransform')) ;
+        $request->persist();
+    }
+
 //    /**
 //     * Show the form for creating a new resource.
 //     *
@@ -33,34 +39,39 @@ class ChatController extends Controller
 //    {
 //        //
 //    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
+//
+//    /**
+//     * Store a newly created resource in storage.
+//     *
+//     * @param  \Illuminate\Http\Request  $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function store(Request $request)
+//    {
+//
+//    }
 
     public function chat_check(ChatCheckRequest $request, User $user, Message $message)
     {
         return response()->json(ChatTransformer::simple($request->persist()->chat));
-
     }
 
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
+    public function add_user(AddUserRequest $request, Chat $chat)
+    {
+        return response()->json(ChatTransformer::simple($request->persist()->chat));
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ShowRequest $request, Chat $chat)
+    {
+        $request->persist();
+    }
 //
 //    /**
 //     * Show the form for editing the specified resource.

@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function chats()
     {
-        return $this->belongsToMany('App\Chat')->withTimestamps();
+        return $this->belongsToMany('App\Chat')->withPivot('action_date')->withTimestamps();
     }
 
 }

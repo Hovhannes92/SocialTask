@@ -24,7 +24,6 @@ class PostTransformer extends Transformer
                'comment_body' => CommentTransformer::collection(Comment::where('post_id', $post->id)->get(), 'simpleTransform'),
                 'tags' => TagTransformer::collection($post->tags, 'simpleTransform'),
 
-
             ];
     }
 

@@ -33,9 +33,9 @@ class ChatCheckRequest extends DataPersistRequest
         })->first()) {
             $this->chat = $chat;
         }else{
-        $new_chat = Chat::create();
-        $new_chat->users()->attach([Auth::user()->id, $this->user->id]);
-        $this->chat = $new_chat;
+        $newChat = Chat::create();
+        $newChat->users()->attach([Auth::user()->id, $this->user->id]);
+        $this->chat = $newChat;
         }
 
         return $this;
