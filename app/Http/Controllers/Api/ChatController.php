@@ -24,10 +24,10 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IndexRequest $request, Chat $chat)
+    public function index(IndexRequest $request)
     {
-//        return response()->json(ChatTransformer::collection(Auth::user()->chats,'detailedTransform')) ;
-        $request->persist();
+        return response()->json(ChatTransformer::collection($request->persist()->chat,'detailedTransform')) ;
+//        return $request->persist()->chat;
     }
 
 //    /**

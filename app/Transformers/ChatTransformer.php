@@ -29,9 +29,10 @@ class ChatTransformer extends Transformer
 //        $to = Message::where('chat_id', $chat->id)->latest()->first();
 ////          dd($to);
 
-        dd($chat->pivot);
+//        dd($chat->pivot);
         return [
             'chat_id' => $chat->id,
+            'messeages_count' => $chat->messages_count,
 
 //            'unread_messages' => Message::where('chat_id', $chat->id)->whereBetween('created_at', [$from->action_date, $to->created_at])->count(),
         ];
