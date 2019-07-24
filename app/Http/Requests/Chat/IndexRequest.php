@@ -30,7 +30,7 @@ class IndexRequest extends DataPersistRequest
     {
 
         $newChats = Auth::user()->chats()->withCount(['messages' => function ($query) {
-            $query->whereRaw('messages.created_at > chat_user.action_date');
+            $query->where('user_id', '!=', Auth::id())->whereRaw('messages.created_at > chat_user.action_date');
         }])->get();
 
         $this->chat = $newChats;
@@ -38,6 +38,5 @@ class IndexRequest extends DataPersistRequest
         return $this;
 
     }
-
 
 }
